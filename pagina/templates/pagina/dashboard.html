@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="../../static/pagina/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="../../static/pagina/images/paginaInicial/icons/logo.svg" type="image/x-icon">
+    <title>Educa Finanças - Minha Carteira</title>    
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"></script>
+    
+<!-- Barra de navegação -->
+
+    <div class="sidebar">
+        <div class="logo">
+            <!-- Imagem do logotipo da marca, exibida na barra de navegação -->
+            <svg width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.75016 16.3334C7.76053 16.2481 6.80037 15.9532 5.9335 15.4682C5.06662 14.9833 4.31288 14.3194 3.72237 13.5207C3.13185 12.722 2.71808 11.8068 2.50854 10.8358C2.29901 9.86485 2.29852 8.86043 2.5071 7.88928C2.71568 6.91812 3.12856 6.00248 3.7183 5.2032C4.30803 4.40391 5.06112 3.73929 5.92752 3.25349C6.79392 2.7677 7.75379 2.47185 8.74334 2.38562C9.73289 2.29939 10.7295 2.42474 11.6668 2.75336L9.3335 5.83336L11.6668 8.16669C11.6668 8.16669 8.16683 9.33336 2.3335 9.33336M19.2502 16.3334C20.2398 16.2481 21.2 15.9532 22.0668 15.4682C22.9337 14.9833 23.6874 14.3194 24.278 13.5207C24.8685 12.722 25.2823 11.8068 25.4918 10.8358C25.7013 9.86485 25.7018 8.86043 25.4932 7.88928C25.2846 6.91812 24.8718 6.00248 24.282 5.2032C23.6923 4.40391 22.9392 3.73929 22.0728 3.25349C21.2064 2.7677 20.2465 2.47185 19.257 2.38562C18.2674 2.29939 17.2709 2.42474 16.3335 2.75336L18.6668 5.83336L16.3335 8.16669C16.3335 8.16669 19.8335 9.33336 25.6668 9.33336M11.6668 15.1667V12.8334M16.3335 15.1667V12.8334" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14.0002 25.6667C18.5105 25.6667 22.1668 23.3162 22.1668 20.4167C22.1668 17.5172 18.5105 15.1667 14.0002 15.1667C9.48984 15.1667 5.8335 17.5172 5.8335 20.4167C5.8335 23.3162 9.48984 25.6667 14.0002 25.6667Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2.3335 18.6667C4.66683 18.6667 5.8335 19.8334 5.8335 19.8334M2.3335 25.6667C2.3335 23.6834 3.85016 22.1667 5.8335 22.1667M22.1668 19.8334C22.1668 19.8334 23.3335 18.6667 25.6668 18.6667M22.1668 22.1667C24.1502 22.1667 25.6668 23.6834 25.6668 25.6667" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>   
+    </div>
+
+    <!-- Header-->
+    <header class="navbar">
+
+            <div class="boas_vindas">
+                <p>Bem-vindo(a)</p>
+                <h1 id="welcomeName">Usuario</h1>
+            </div>
+            <!-- Ícone de perfil do usuário -->
+            <div class="action-icon">
+                <div class="btn-perfil">
+                    <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.0977 10.5C14.3068 10.5 16.0977 8.70914 16.0977 6.5C16.0977 4.29086 14.3068 2.5 12.0977 2.5C9.88852 2.5 8.09766 4.29086 8.09766 6.5C8.09766 8.70914 9.88852 10.5 12.0977 10.5Z" fill="white"/>
+                        <path d="M20.0977 18C20.0977 20.485 20.0977 22.5 12.0977 22.5C4.09766 22.5 4.09766 20.485 4.09766 18C4.09766 15.515 7.67966 13.5 12.0977 13.5C16.5157 13.5 20.0977 15.515 20.0977 18Z" fill="white"/>
+                    </svg>
+                    <!-- Pop-up de Perfil -->
+                    <div class="popup-perfil">
+                        <div class="popup-perfil-conteudo">
+                            <ul class="popup-menu">
+                                <li>
+                                    <div class="popup-icons"><i data-lucide="log-out"></i></div>
+                                    <form action="{% url 'logout' %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="group-link" style="border: none; background: none; color: inherit;">Sair</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+     <!-- detalhes da conta -->
+     <div class="popup-container popup-account-details">
+        <div class="popup">
+            <div class="popup-header">
+                <h1 class="titulo">Adicionar Renda</h1>            
+                <div class="close-btn-account">
+                    <i class="fas fa-times"></i>
+                    
+                </div>                  
+            </div>  
+        
+            <div class="container-inputs">
+                <div class="content">
+                    <label for="valor">Valor</label>
+                    <p class="currency">R$</p>
+                    <input type="text" id="valor" placeholder="0,00" required>
+
+                </div>
+            </div>
+            
+            <button class="btn" disabled>Salvar</button>
+        </div>
+    </div>
+    
+    <!--  Categoria -->
+    <div class="popup-container popup-despesas">
+        <div class="popup">
+            <div class="popup-header">
+                <h1 class="titulo">Criação de Categoria</h1>            
+                <div class="close-btn-despesas">
+                    <!-- Ícone de fechar -->
+                    <svg width="24" height="24" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.04962 3.54999C3.23715 3.36252 3.49146 3.2572 3.75662 3.2572C4.02179 3.2572 4.27609 3.36252 4.46362 3.54999L7.99962 7.08599L11.5356 3.54999C11.7242 3.36783 11.9768 3.26704 12.239 3.26931C12.5012 3.27159 12.752 3.37676 12.9374 3.56217C13.1228 3.74758 13.228 3.99839 13.2303 4.26059C13.2326 4.52278 13.1318 4.77539 12.9496 4.96399L9.41362 8.49999L12.9496 12.036C13.1318 12.2246 13.2326 12.4772 13.2303 12.7394C13.228 13.0016 13.1228 13.2524 12.9374 13.4378C12.752 13.6232 12.5012 13.7284 12.239 13.7307C11.9768 13.7329 11.7242 13.6321 11.5356 13.45L7.99962 9.91399L4.46362 13.45C4.27502 13.6321 4.02242 13.7329 3.76022 13.7307C3.49802 13.7284 3.24721 13.6232 3.0618 13.4378C2.8764 13.2524 2.77123 13.0016 2.76895 12.7394C2.76667 12.4772 2.86746 12.2246 3.04962 12.036L6.58562 8.49999L3.04962 4.96399C2.86215 4.77646 2.75684 4.52215 2.75684 4.25699C2.75684 3.99182 2.86215 3.73752 3.04962 3.54999Z" fill="#434343"/>
+                    </svg>
+                </div>                  
+            </div>         
+        
+            <div class="container-inputs">
+                <div class="content">
+                    <label>Categoria</label>
+                    <div class="select despesas">
+                        <div class="categoria-select">
+                            <input type="checkbox" id="categoria-despesas" name="categoria-despesas" required>
+            
+                            <div class="select-button">
+                                <div id="selected-value-despesas">Selecione uma categoria</div>
+                                
+                                <div id="chevrons">
+                                    <i data-lucide="chevron-up"></i>
+                                    <i data-lucide="chevron-down"></i>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <ul id="options-despesas">
+                            <li class="option">
+                                <input type="radio" id="Alimentação" name="categoria-despesas" value="Alimentação">
+                                <label for="Alimentação">Alimentação</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Transporte" name="categoria-despesas" value="Transporte">
+                                <label for="Transporte">Transporte</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Lazer" name="categoria-despesas" value="Lazer">
+                                <label for="Lazer">Lazer</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Outros" name="categoria-despesas" value="Outros">
+                                <label for="Outros">Outros</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content">
+                    <label for="valor-despesas">Valor</label>
+                    <p class="currency">R$</p>
+                    <input type="text" id="valor-despesas" placeholder="00,00" required>
+                </div>
+            </div>
+        
+            <button class="btn">Adicionar</button>
+        </div>
+    </div>
+    
+    <!-- Entrada -->
+    <div class="popup-container popup-entradas">
+        <div class="popup">
+            <div class="popup-header">
+                <h1 class="titulo">Criação de Categoria</h1>            
+                <div class="close-btn-entradas">
+                    <svg width="24" height="24" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.04962 3.54999C3.23715 3.36252 3.49146 3.2572 3.75662 3.2572C4.02179 3.2572 4.27609 3.36252 4.46362 3.54999L7.99962 7.08599L11.5356 3.54999C11.7242 3.36783 11.9768 3.26704 12.239 3.26931C12.5012 3.27159 12.752 3.37676 12.9374 3.56217C13.1228 3.74758 13.228 3.99839 13.2303 4.26059C13.2326 4.52278 13.1318 4.77539 12.9496 4.96399L9.41362 8.49999L12.9496 12.036C13.1318 12.2246 13.2326 12.4772 13.2303 12.7394C13.228 13.0016 13.1228 13.2524 12.9374 13.4378C12.752 13.6232 12.5012 13.7284 12.239 13.7307C11.9768 13.7329 11.7242 13.6321 11.5356 13.45L7.99962 9.91399L4.46362 13.45C4.27502 13.6321 4.02242 13.7329 3.76022 13.7307C3.49802 13.7284 3.24721 13.6232 3.0618 13.4378C2.8764 13.2524 2.77123 13.0016 2.76895 12.7394C2.76667 12.4772 2.86746 12.2246 3.04962 12.036L6.58562 8.49999L3.04962 4.96399C2.86215 4.77646 2.75684 4.52215 2.75684 4.25699C2.75684 3.99182 2.86215 3.73752 3.04962 3.54999Z" fill="#434343"/>
+                    </svg>
+                </div>                  
+            </div>         
+    
+            <div class="container-inputs">
+                <div class="content">
+                    <label>Categoria</label>
+                    <div class="select">
+
+                        <div class="categoria-select">
+                            <input type="checkbox" id="categoria-entradas" name="categoria-entradas" required>
+        
+                            <div class="select-button">
+                                <div id="selected-value-entradas">Selecione uma categoria</div>
+                                
+                                <div id="chevrons">
+                                    <i data-lucide="chevron-up"></i>
+                                    <i data-lucide="chevron-down"></i>
+                                </div>
+                            </div>
+        
+                        </div>
+        
+                        <ul id="options-entradas">
+                            <li class="option">
+                                <input type="radio" id="Salário" name="categoria-entradas" value="Salário" data-label="Salário">
+                                <label for="Salário">Salário</label>                                
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Renda Extra" name="categoria-entradas" value="Renda Extra" data-label="Renda Extra">
+                                <label for="Renda Extra">Renda Extra</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Dividendos" name="categoria-entradas" value="Dividendos" data-label="Dividendos">
+                                <label for="Dividendos">Dividendos</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Rendimentos" name="categoria-entradas" value="Rendimentos" data-label="Rendimentos">
+                                <label for="Rendimentos">Rendimentos</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                        </ul>
+                </div>
+                </div>
+                <div class="content">
+                    <label for="valor-entradas">Valor</label>
+                    <p class="currency">R$</p>
+                    <input type="text" id="valor-entradas" placeholder="00,00" required>
+                </div>
+            </div>
+    
+            <button class="btn-despesa">
+                Adicionar
+            </button>
+
+            
+        </div>
+        
+    </div>
+
+    <!-- Modal de Nome do Usuário -->
+    <div class="modal" id="popupPerfil">
+        <div class="modal-conteudo">
+            <h1>Como você gostaria de ser chamado(a)?</h1>
+            <input type="text" id="username" placeholder="Digite seu nome">
+            <button id="saveUsername">Salvar</button>
+        </div>
+    </div>
+    
+    <!-- Container de Notificação -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Filtro -->
+    <div class="popup-container popup-filtro">
+        <div class="popup">
+            <div class="popup-header">
+                <h1 class="titulo">Filtro</h1>            
+                <div class="close-btn-filtro">
+                    <svg width="24" height="24" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.04962 3.54999C3.23715 3.36252 3.49146 3.2572 3.75662 3.2572C4.02179 3.2572 4.27609 3.36252 4.46362 3.54999L7.99962 7.08599L11.5356 3.54999C11.7242 3.36783 11.9768 3.26704 12.239 3.26931C12.5012 3.27159 12.752 3.37676 12.9374 3.56217C13.1228 3.74758 13.228 3.99839 13.2303 4.26059C13.2326 4.52278 13.1318 4.77539 12.9496 4.96399L9.41362 8.49999L12.9496 12.036C13.1318 12.2246 13.2326 12.4772 13.2303 12.7394C13.228 13.0016 13.1228 13.2524 12.9374 13.4378C12.752 13.6232 12.5012 13.7284 12.239 13.7307C11.9768 13.7329 11.7242 13.6321 11.5356 13.45L7.99962 9.91399L4.46362 13.45C4.27502 13.6321 4.02242 13.7329 3.76022 13.7307C3.49802 13.7284 3.24721 13.6232 3.0618 13.4378C2.8764 13.2524 2.77123 13.0016 2.76895 12.7394C2.76667 12.4772 2.86746 12.2246 3.04962 12.036L6.58562 8.49999L3.04962 4.96399C2.86215 4.77646 2.75684 4.52215 2.75684 4.25699C2.75684 3.99182 2.86215 3.73752 3.04962 3.54999Z" fill="#434343"/>
+                    </svg>
+                </div>                  
+            </div>         
+    
+            <div class="container-inputs">
+                <div class="content">
+                    <label>Categoria</label>
+                    <div class="select">
+
+                        <div class="categoria-select">
+                            <input type="checkbox" id="categoria-filtro" name="categoria-filtro" required>
+        
+                            <div class="select-button">
+                                <div id="selected-value-filtro">Selecione uma categoria</div>
+                                
+                                <div id="chevrons">
+                                    <i data-lucide="chevron-up"></i>
+                                    <i data-lucide="chevron-down"></i>
+                                </div>
+                            </div>
+        
+                        </div>
+        
+                        <ul id="options-filtro">
+                            <li class="option">
+                                <input type="radio" id="Alimentação" name="categoria-filtro" value="Alimentação" data-label="Alimentação">
+                                <label for="Alimentação">Alimentação</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Transporte" name="categoria-filtro" value="Transporte" data-label="Transporte">
+                                <label for="Transporte">Transporte</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Lazer" name="categoria-filtro" value="Lazer" data-label="Lazer">
+                                <label for="Lazer">Lazer</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Outros" name="categoria-filtro" value="Outros" data-label="Outros">
+                                <label for="Outros">Outros</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Salário" name="categoria-filtro" value="Salário" data-label="Salário">
+                                <label for="Salário">Salário</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Renda Extra" name="categoria-filtro" value="Renda Extra" data-label="Renda Extra">
+                                <label for="Renda Extra">Renda Extra</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Dividendos" name="categoria-filtro" value="Dividendos" data-label="Dividendos">
+                                <label for="Dividendos">Dividendos</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                            <li class="option">
+                                <input type="radio" id="Rendimentos" name="categoria-filtro" value="Rendimentos" data-label="Rendimentos">
+                                <label for="Rendimentos">Rendimentos</label>
+                                <i data-lucide="check"></i>
+                            </li>
+                           
+
+                        </ul>
+                </div>
+                </div>
+            </div>
+    
+            <button class="btn">Visualizar</button>
+            <br>
+            <button class="btn btn-ver-todos">Ver Todos</button>
+            <br> 
+        
+            
+           
+        </div>
+    </div>
+
+    <!-- main-->
+    <main class="content-area">
+ 
+        <!-- Seção de detalhes da conta do usuário -->
+            <section class="account-details">
+                <div class="header">
+                    <h2>Detalhes da Conta</h2>
+                    <div class="btn-account">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 12.4999H12M12 12.4999H20M12 12.4999V4.49988M12 12.4999V20.4999" stroke="#4C4C4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="account-summary">
+                    
+                    <!-- Item de saldo atual -->
+                    <div class="balance-item">
+                    <!-- icone -->
+                        <div class="balance-icon">
+                            <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M32 10.92V7.5C32 5.85 30.65 4.5 29 4.5H8C7.20435 4.5 6.44129 4.81607 5.87868 5.37868C5.31607 5.94129 5 6.70435 5 7.5V28.5C5 29.2956 5.31607 30.0587 5.87868 30.6213C6.44129 31.1839 7.20435 31.5 8 31.5H29C30.65 31.5 32 30.15 32 28.5V25.08C32.4534 24.8182 32.8304 24.4424 33.0936 23.9898C33.3567 23.5371 33.4968 23.0235 33.5 22.5V13.5C33.4968 12.9765 33.3567 12.4629 33.0936 12.0102C32.8304 11.5576 32.4534 11.1818 32 10.92ZM30.5 13.5V22.5H20V13.5H30.5ZM8 28.5V7.5H29V10.5H20C18.35 10.5 17 11.85 17 13.5V22.5C17 24.15 18.35 25.5 20 25.5H29V28.5H8Z" fill="white"/>
+                                <path d="M24.5 20.25C25.7426 20.25 26.75 19.2426 26.75 18C26.75 16.7574 25.7426 15.75 24.5 15.75C23.2574 15.75 22.25 16.7574 22.25 18C22.25 19.2426 23.2574 20.25 24.5 20.25Z" fill="white"/>
+                            </svg>
+                        </div>
+
+                        <div class="balance-text">
+                        <!--descrição de dados-->
+                            <p class="balance-label">Saldo Atual</p>
+                            <p id="saldo-atual" class="balance-amount">R$ 00</p>
+                        </div>
+                    </div>
+
+                    <!-- Item de despesas -->
+                    <div class="balance-item">
+                        <div class="balance-icon">
+                            <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.6925 21.4591L6.0345 18.7966L3.375 21.4591M27.3075 14.5906L29.9655 17.2546L32.625 14.5906" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M29.9657 17.2545C29.9657 14.0745 28.7057 11.028 26.4617 8.77954C25.3513 7.66693 24.0324 6.78421 22.5805 6.18192C21.1285 5.57963 19.5721 5.26959 18.0002 5.26953C16.4733 5.26832 14.9605 5.56221 13.5452 6.13504C11.9652 6.76853 10.5384 7.73175 9.36023 8.9604C8.18202 10.189 7.27942 11.6549 6.71267 13.26M6.03467 18.795C6.03697 21.5769 7.0057 24.2715 8.77517 26.418C10.5427 28.562 13.0019 30.0234 15.73 30.5509C18.4581 31.0784 21.2848 30.6391 23.7242 29.3085C26.1634 27.9753 28.0641 25.8365 29.1017 23.2575" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14.3701 20.967C14.4482 21.8575 14.8718 22.682 15.5503 23.2641C16.2287 23.8461 17.1081 24.1393 18.0001 24.081C20.9281 24.081 21.6301 22.3965 21.6301 20.967C21.6301 19.5375 20.4196 18.0225 18.0001 18.0225C15.5806 18.0225 14.3701 17.0655 14.3701 15.1155C14.4037 14.4398 14.6423 13.7904 15.0542 13.2536C15.466 12.7169 16.0316 12.3183 16.6756 12.111C17.1031 11.973 17.5531 11.9235 18.0001 11.9655C18.8933 11.9267 19.7673 12.2316 20.4425 12.8175C21.1177 13.4035 21.5427 14.2258 21.6301 15.1155M18.0001 25.896V24.3195M18.0001 10.1445V11.9595" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                                
+                        </div>
+                        <div class="balance-text">
+                            <p class="balance-label">Despesa Mensal</p>
+                            <p id="despesa-total"class="balance-amount">R$ 00</p> <!-- Este elemento será atualizado -->
+                        </div>
+                        
+                    </div>
+
+                    <!-- Item de renda -->
+                    <div class="balance-item">
+                        <div class="balance-icon">
+                            <svg width="32" height="32" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 9C24 6.171 24 4.758 23.121 3.879C22.242 3 20.829 3 18 3C15.171 3 13.758 3 12.879 3.879C12 4.758 12 6.171 12 9M3 21C3 15.3435 3 12.5145 4.758 10.758C6.516 9.0015 9.3435 9 15 9H21C26.6565 9 29.4855 9 31.242 10.758C32.9985 12.516 33 15.3435 33 21C33 26.6565 33 29.4855 31.242 31.242C29.484 32.9985 26.6565 33 21 33H15C9.3435 33 6.5145 33 4.758 31.242C3.0015 29.484 3 26.6565 3 21Z" stroke="white" stroke-width="3"/>
+                                <path d="M18 25.9995C19.6575 25.9995 21 24.8805 21 23.5005C21 22.1205 19.6575 21 18 21C16.3425 21 15 19.881 15 18.4995C15 17.1195 16.3425 16.0005 18 16.0005M18 25.9995C16.3425 25.9995 15 24.8805 15 23.5005M18 25.9995V27M18 16.0005V15M18 16.0005C19.6575 16.0005 21 17.1195 21 18.4995" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="balance-text">
+                            <p class="balance-label">Renda</p>
+                            <p id="renda-total" class="balance-amount">R$ 00</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+           <!-- Seção de histórico de despesas -->
+            <section class="expense-history">
+                <div class="header">
+                    <h2>Histórico</h2>
+                    <div class="btn-filtro">
+                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.5 5.5C2.5 5.10218 2.65804 4.72064 2.93934 4.43934C3.22064 4.15804 3.60218 4 4 4H21C21.3978 4 21.7794 4.15804 22.0607 4.43934C22.342 4.72064 22.5 5.10218 22.5 5.5C22.5 5.89782 22.342 6.27936 22.0607 6.56066C21.7794 6.84196 21.3978 7 21 7H4C3.60218 7 3.22064 6.84196 2.93934 6.56066C2.65804 6.27936 2.5 5.89782 2.5 5.5ZM6.5 11.5C6.5 11.1022 6.65804 10.7206 6.93934 10.4393C7.22064 10.158 7.60218 10 8 10H17C17.3978 10 17.7794 10.158 18.0607 10.4393C18.342 10.7206 18.5 11.1022 18.5 11.5C18.5 11.8978 18.342 12.2794 18.0607 12.5607C17.7794 12.842 17.3978 13 17 13H8C7.60218 13 7.22064 12.842 6.93934 12.5607C6.65804 12.2794 6.5 11.8978 6.5 11.5ZM11 16C10.6022 16 10.2206 16.158 9.93934 16.4393C9.65804 16.7206 9.5 17.1022 9.5 17.5C9.5 17.8978 9.65804 18.2794 9.93934 18.5607C10.2206 18.842 10.6022 19 11 19H14C14.3978 19 14.7794 18.842 15.0607 18.5607C15.342 18.2794 15.5 17.8978 15.5 17.5C15.5 17.1022 15.342 16.7206 15.0607 16.4393C14.7794 16.158 14.3978 16 14 16H11Z" fill="#747474"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="expense-summary">
+                    <!-- Os Cards serão adicionados dinamicamente aqui -->
+                </div>
+
+            </section>
+
+
+         
+            <!-- Seção de despesas por categoria -->
+            <div class="container-categorias">
+                <section class="despesas-por-categoria">
+                    <div class="header">
+                        <h2>Despesas por Categoria</h2>
+                    </div>
+                    
+                    <!-- Cards de categoria -->
+                    <div class="card-infos">
+                        <!-- Os cards gerados dinamicamente serão inseridos aqui -->
+                    </div>
+                    
+                    <!-- Botão para adicionar categoria -->
+                    <button class="btn-despesas">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 12.4999H12M12 12.4999H20M12 12.4999V4.49988M12 12.4999V20.4999" stroke="#4C4C4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p>Adicionar Categoria</p>
+                    </button>
+                </section>
+
+                
+                <!-- Seção de entradas por categoria -->
+                <section class="entradas-por-categoria">
+                    <div class="header">
+                        <h2>Entradas por Categoria</h2>
+                        
+                    </div>
+                    <div class="card-infos">
+                      <!-- Os cards gerados dinamicamente serão inseridos aqui -->
+
+                    </div>
+                    <button class="btn-entradas">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 12.4999H12M12 12.4999H20M12 12.4999V4.49988M12 12.4999V20.4999" stroke="#4C4C4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p>Adicionar Categoria</p>
+                    </button>
+                </section>
+            </div>
+
+           
+        <!-- Seção de anuncio -->
+            <section class="anuncio">
+                <div class="conteudo">
+                    <span>Educa Finanças - 2024</span>
+                    <p>Tire dúvidas sobre finanças com o</p>
+                    <h2>BEATZINHO</h2>
+                </div>
+                <button>
+                    <a href="{% url 'index' %}">
+                        Acesse
+                        <svg width="24" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.2021 15.2252C15.1034 15.2254 15.0056 15.2061 14.9144 15.1684C14.8232 15.1307 14.7403 15.0754 14.6705 15.0056C14.6007 14.9358 14.5453 14.8529 14.5076 14.7616C14.47 14.6704 14.4506 14.5726 14.4508 14.4739L14.4508 9.92282L7.95426 16.4194C7.81361 16.56 7.62284 16.639 7.42393 16.639C7.22502 16.639 7.03425 16.56 6.8936 16.4194C6.75295 16.2787 6.67393 16.0879 6.67393 15.889C6.67393 15.6901 6.75295 15.4994 6.8936 15.3587L13.3901 8.86216L8.83814 8.86128C8.63889 8.86128 8.44779 8.78212 8.3069 8.64122C8.166 8.50033 8.08684 8.30923 8.08684 8.10998C8.08684 7.91072 8.166 7.71962 8.3069 7.57873C8.44779 7.43783 8.63889 7.35867 8.83815 7.35867L15.2021 7.35867C15.3008 7.3585 15.3986 7.37782 15.4898 7.41551C15.581 7.45321 15.6639 7.50854 15.7337 7.57834C15.8035 7.64814 15.8589 7.73103 15.8966 7.82226C15.9343 7.91349 15.9536 8.01126 15.9534 8.10998L15.9534 14.4739C15.9536 14.5726 15.9343 14.6704 15.8966 14.7616C15.8589 14.8529 15.8035 14.9358 15.7337 15.0056C15.6639 15.0754 15.581 15.1307 15.4898 15.1684C15.3986 15.2061 15.3008 15.2254 15.2021 15.2252Z" fill="#434343"/>
+                        </svg>
+                    </a>
+                </button>
+            </section>
+    
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script  src="../../static/pagina/js/dashboard/pop-up.js"></script>
+    <script  src="../../static/pagina/js/dashboard/modal.js"></script>
+  
+
+</body>
+</html>

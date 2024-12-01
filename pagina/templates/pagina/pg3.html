@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'pagina/css/pag.css' %}">
+    <link rel="shortcut icon" href="../../static/pagina/images/paginaInicial/icons/logo.svg" type="image/x-icon">
+    <title>Educa Finanças - Análise de Riscos</title>
+</head>
+<body>
+
+    <!-- Seção da Barra de Navegação -->
+    <section class="nav">
+
+        <!-- Container da Logo e Nome do Projeto -->
+        <div class="logo">
+            <img src="{% static 'pagina/images/paginaInicial/icons/logo.svg' %}" alt="Logo">
+            <h1>Educa Finanças</h1>
+        </div>
+
+        <!-- Container dos Links do Site -->
+        <div class="links-nav">
+
+            <!-- Links do Site -->
+            <ul>
+                <li><a href="{% url 'index' %}">Início</a></li>
+            </ul>
+
+            <!-- Verifica se o usuário está autenticado -->
+            {% if user %}
+            <!-- Ícone de perfil do usuário -->
+            <div class="action-icon">
+                <div class="btn-perfil">
+                    <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.0977 10.5C14.3068 10.5 16.0977 8.70914 16.0977 6.5C16.0977 4.29086 14.3068 2.5 12.0977 2.5C9.88852 2.5 8.09766 4.29086 8.09766 6.5C8.09766 8.70914 9.88852 10.5 12.0977 10.5Z" fill="white"/>
+                        <path d="M20.0977 18C20.0977 20.485 20.0977 22.5 12.0977 22.5C4.09766 22.5 4.09766 20.485 4.09766 18C4.09766 15.515 7.67966 13.5 12.0977 13.5C16.5157 13.5 20.0977 15.515 20.0977 18Z" fill="white"/>
+                    </svg>
+
+                    <!-- Pop-up de Perfil -->
+                    <div class="popup-perfil">
+                        <div class="popup-perfil-conteudo">
+                            <ul class="popup-menu">
+                                <li>
+                                    <div class="popup-icons"><i data-lucide="wallet"></i></div>
+                                    <a href="{% url 'dashboard' %}" class="group-link">Minha Carteira</a>
+                                </li>
+                                <li>
+                                    <div class="popup-icons"><i data-lucide="log-out"></i></div>
+                                    <a href="#" class="group-link">Sair</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% else %}
+            <a href="{% url 'cadastro' %}"><button type="button">Entrar</button></a>
+            {% endif %}
+
+        </div>
+    
+    </section>
+
+    <section class="container">
+        <div class="img-header"><img src="{% static 'pagina/images/paginaInicial/Card-Imagem-3.png' %}" alt="Imagem"></div>
+
+        <h1>Análise de Riscos</h1>
+
+        <div class="conteudo">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam quas, esse numquam, corrupti facilis tempore nesciunt vero molestias doloribus id alias minima totam voluptas quisquam amet rerum laborum deleniti odit ullam saepe ab porro. Dignissimos!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut voluptatum illo illum, accusantium est unde itaque vero cum ex hic culpa reprehenderit quasi voluptas nisi.</p>
+        </div>
+    </section>
+
+    <!-- Seção do Footer -->
+    <section class="footer">
+
+        <!-- Container do Footer -->
+        <div class="container-footer">
+
+            <!-- Container da Logo e Nome do Projeto -->
+            <div class="logo">
+                <img src="{% static 'pagina/images/paginaInicial/icons/logo.svg' %}" alt="Logo">
+                <h1>Educa Finanças</h1>
+            </div>
+
+            <!-- Container das Redes Sociais -->
+            <div class="social-media">
+                <a href="https://github.com/projetoFinancas"><img src="{% static 'pagina/images/paginaInicial/icons/github.svg' %}" alt="GitHub"></a>
+            </div>
+
+        </div>
+
+        <!-- Container do Sitemap e Direitos Autorais -->
+        <div class="container-links">
+
+        <!-- Sitemap - Links do Site -->
+        <ul>
+            <li><a href="#dashboard">DashBoard</a></li>
+            <li><a href="#chat">ChatBot</a></li>
+            <li><a href="#conteudos">Conteúdos</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+        </ul>
+
+        <!-- Direitos Autorais -->
+        <p>&copy; 2024 Educa Finanças - Todos os Direitos Reservados</p>
+
+        </div>
+
+    </section>
+    
+       <!-- Pegar o link do script da pagina lucide -->
+       <script src="https://unpkg.com/lucide@latest"></script>
+       <script src="../../static/pagina/js/pg.js"></script>
+</body>
+</html>

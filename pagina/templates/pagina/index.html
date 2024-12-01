@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'pagina/css/index.css' %}">
+    <link rel="shortcut icon" href="../../static/pagina/images/paginaInicial/icons/logo.svg" type="image/x-icon">
+    <title>Educa Finanças - Início</title>
+</head>
+<body>
+
+    <!-- Seção da Barra de Navegação -->
+    <section class="nav">
+
+        <!-- Container da Logo e Nome do Projeto -->
+        <div class="logo">
+            <img src="{% static 'pagina/images/paginaInicial/icons/logo.svg' %}" alt="Logo">
+            <h1>Educa Finanças</h1>
+        </div>
+
+        <!-- Container dos Links do Site -->
+        <div class="links-nav">
+
+            <!-- Links do Site -->
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#dashboard">Carteira</a></li>
+                <li><a href="#chat">ChatBot</a></li>
+                <li><a href="#conteudos">Conteúdos</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+            </ul>
+
+            <!-- Verifica se o usuário está autenticado -->
+
+            <!-- Ícone de perfil do usuário -->
+           
+
+            <a href="{% url 'cadastro' %}"><button type="button">Entrar</button></a>
+        
+            <!-- Botão de Menu -->
+            <div class="menu-icons">
+                <i class="menu-icon" data-lucide="menu"></i>
+                <i class="menu-icon" data-lucide="x"></i>
+            </div>
+
+        </div>
+    
+    </section>
+
+    <!-- Seção do Header -->
+    <section class="header">
+
+        <!-- Container -->
+        <div class="container">
+
+            <!-- Container de Conteúdo da Seção do Header -->
+            <div class="conteudo-header">
+
+                <!-- Texto Principal do Header -->
+                <h1>Acompanhe, <span class="destaque">planeje</span> e realize <span class="destaque">seus objetivos</span> financeiros!</h1>
+
+                <!-- Texto Secundário do Header -->
+                <p>Uma plataforma simples e poderosa para gerenciar seu dinheiro, planejar seu futuro e alcançar seus objetivos financeiros.</p>
+
+                <!-- Botoes do Header -->
+                <a href="{% url 'cadastro' %}"><button type="button">Começar agora</button></a>
+
+            </div>
+
+            <!-- Imagem do Beatzinho -->
+            <div class="container-img-header">
+                <img src="{% static 'pagina/images/paginaInicial/Imagem-Header.png' %}" alt="Imagem-do-Beatzinho">
+            </div>
+
+        </div>
+
+    </section>
+
+     <!-- ChatBot -->
+     <section class="chatBot">
+        <div class="icon-chat" onclick="toggleChat()">
+            <img src="{% static 'pagina/images/paginaInicial/icons/chat-icon.svg' %}" alt="">
+        </div>
+        
+        
+        <div class="chat">
+                <div class="header">
+                    <h4>Beatzinho</h4>
+                    <svg onclick="toggleChat()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6" style="width: 1.5em; height: 1.5em;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </div>
+        
+                <div id="chat-box" style="flex: 1; overflow-y: auto; padding: 1em;">
+                    <div class="message bot">
+                        <div class="profile"></div>
+                        <div class="content-messsage">
+                            <h2>Beatzinho</h2>
+                            <div class="msg">
+                                <p>Escolha uma das opções abaixo para começar:</p>
+                                <div class="options">
+                                    <div class="option" onclick="sendMessage('1')">1 - Direcionamento sobre Endividamento <i data-lucide="check"></i></div>
+                                    <div class="option" onclick="sendMessage('2')">2 - Assistente Financeiro <i data-lucide="check"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="footer">
+                    <div class="message-bar">
+                        <input id="user-input" type="text" placeholder="Digite o número da opção" onkeypress="handleKeyPress(event)">
+                        <button onclick="sendMessageFromInput()">
+                            <img src="{% static 'pagina/images/paginaInicial/icons/tabler_send.svg' %}" alt="">
+                        </button>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+  
+    <!-- Seção do Dashboard -->
+    <section class="dashboard" id="dashboard">
+
+        <!-- Container -->
+        <div class="container">
+
+            <!-- Imagem do Dashboard -->
+            <div class="container-img-dashboard">
+                <img src="{% static 'pagina/images/paginaInicial/Imagem-Dashboard.png' %}" alt="">
+            </div>
+
+            <!-- Container de Conteúdo da Seção do Dashboard -->
+            <div class="conteudo-dashboard">
+               
+                <!-- Texto Principal do Dashboard -->
+                <h1>Conheça a nossa Carteira e <span class="destaque">facilite tudo!</span></h1>
+                
+                <!-- Texto Secundário do Dashboard -->
+                 <p>Nossa Carteira oferece uma visão clara e intuitiva das suas finanças, permitindo que você controle facilmente seus gastos, receitas e investimentos.</p>
+                 <p>Com ela você pode descobrir um mar de possibilidades e tirar o melhor proveito de suas finanças. Vem conferir!</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Seção do ChatBot -->
+    <section class="apresentacao-beatzinho" id="chat">
+
+        <!-- Container -->
+        <div class="container">
+
+            <!-- Container de Conteúdo da Seção do ChatBot -->
+            <div class="conteudo-apresentacao-beatzinho">
+
+                <!-- Texto Inicial do ChatBot -->
+                <p>Nosso mascote, Beatzinho, está aqui para te ajudar com suas dúvidas.</p>
+
+                <!-- Texto Principal do ChatBot -->
+                <h1>Acesse o ChatBot e <span class="destaque">tire suas dúvidas</span> com o Beatzinho!</h1>
+
+                <!-- Texto Secundário do ChatBot -->
+                <p>Para utilizá-lo, basta você pode clicar no ícone, que se encontra no canto direito da tela, para iniciar o chat.</p>
+
+            </div>
+
+            <!-- Imagem do Beatzinho -->
+            <div class="container-img-beatzinho">
+                <img src="{% static 'pagina/images/paginaInicial/Imagem-ChatBot.png' %}" alt="Beatzinho com Demonstração do ChatBot">
+            </div>
+
+        </div>
+
+     </section>
+
+    <!-- Seção dos Conteúdos -->
+    <section class="conteudos" id="conteudos">
+
+        <!-- Container do Cabeçalho da Seção dos Conteúdos -->
+        <div class="header-conteudos">
+            <h1><span class="destaque">Obtenha</span> mais <span class="destaque">conhecimento</span> financeiro</h1>
+            <p>Mantenha-se atualizado sobre tudo o que acontece no mundo financeiro e mais.</p>
+        </div>
+
+        <!-- Container de Cards -->
+        <div class="cards">
+
+            <!-- Card -->
+            <div class="card">
+                <img src="{% static 'pagina/images/paginaInicial/Card-Imagem-1.png' %}" alt="Imagem">
+                <div class="conteudo-card">
+                    <h1>Direito do Consumidor</h1>
+                    <p>Proteja seus direitos como consumidor e entenda as leis que garantem boas transações.</p>
+                    <a href="{% url 'pag' %}">Saiba mais <img src="{% static 'pagina/images/paginaInicial/icons/seta.svg' %}" alt=""></a>
+                </div>
+            </div>
+            <!-- Card -->
+            <div class="card">
+                <img src="{% static 'pagina/images/paginaInicial/Card-Imagem-2.png' %}" alt="Imagem">
+                <div class="conteudo-card">
+                    <h1>Transformação Digital</h1>
+                    <p>A transformação digital está revolucionando a forma como lidamos com as finanças.</p>
+                    <a href="{% url 'pag2' %}">Saiba mais <img src="{% static 'pagina/images/paginaInicial/icons/seta.svg' %}" alt=""></a>
+                </div>
+            </div>
+            <!-- Card -->
+            <div class="card">
+                <img src="{% static 'pagina/images/paginaInicial/Card-Imagem-3.png' %}" alt="Imagem">
+                <div class="conteudo-card">
+                    <h1>Análise de Riscos</h1>
+                    <p>Com uma análise detalhada dos riscos, você pode tomar decisões financeiras responsáveis.</p>
+                    <a href="{% url 'pag3' %}">Saiba mais <img src="{% static 'pagina/images/paginaInicial/icons/seta.svg' %}" alt=""></a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Seção de Convite para Explorar o Site -->
+    <section class="convite">
+
+        <!--  Container  -->
+        <div class="container">
+
+            <!-- Container de Conteúdo da Seção do Convite -->
+            <div class="conteudo-convite">
+
+                <!-- Texto Principal do Convite -->
+                <h1>Venha desfrutar de <span class="destaque">incríveis possibilidades!</span></h1>
+
+                <!-- Texto Secundário do Convite -->
+                <p>Desde o planejamento até a realização de objetivos, nossa plataforma é a chave para transformar suas metas em realidade. Não perca a chance de viver com mais segurança e liberdade financeira!</p>
+            
+                <!-- Botão do Convite -->
+                <a href="{% url 'cadastro' %}"><button type="button">Crie sua conta</button></a>
+
+            </div>
+
+            <!-- Imagem do Beatzinho -->
+            <div class="container-img-convite">
+                <img src="{% static 'pagina/images/paginaInicial/Imagem-Convite.png' %}" alt="Imagem do Beatzinho">
+            </div>
+
+        </div>
+    
+    </section>
+
+    <!-- Seção de Sobre -->
+    <section class="sobre" id="sobre">
+
+        <!--  Container  -->
+        <div class="container">
+
+            <!-- Imagem -->
+            <img src="{% static 'pagina/images/paginaInicial/Imagem-Sobre.png' %}" alt="Imagem do Beatzinho">
+
+            <!-- Container de Conteúdo da Seção do Sobre -->
+            <div class="conteudo-sobre">
+
+                <!-- Texto Principal do Sobre -->
+                <h1>Sobre o <br> <span class="destaque">Educa Finanças</span></h1>
+
+                <!-- Texto Secundário do Sobre -->
+                <p>O Educa Finanças é uma plataforma inovadora projetada para ajudar você a organizar, planejar e alcançar seus objetivos financeiros de forma simples e eficaz.</p>
+            
+                <!-- Texto Terciário do Sobre -->
+                <p> Com ferramentas intuitivas, oferecemos um controle completo sobre seus gastos, receitas e investimentos, permitindo que você tome decisões financeiras mais informadas e seguras.</p>
+            
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Seção do Footer -->
+    <section class="footer">
+
+       <!-- Container do Footer -->
+       <div class="container-footer">
+
+           <!-- Container da Logo e Nome do Projeto -->
+           <div class="logo">
+               <img src="{% static 'pagina/images/paginaInicial/icons/logo.svg' %}" alt="Logo">
+               <h1>Educa Finanças</h1>
+           </div>
+
+           <!-- Container das Redes Sociais -->
+           <div class="social-media">
+               <a href="https://github.com/projetoFinancas"><img src="{% static 'pagina/images/paginaInicial/icons/github.svg' %}" alt="GitHub"></a>
+           </div>
+
+       </div>
+
+       <!-- Container do Sitemap e Direitos Autorais -->
+       <div class="container-links">
+
+        <!-- Sitemap - Links do Site -->
+        <ul>
+            <li><a href="#dashboard">DashBoard</a></li>
+            <li><a href="#chat">ChatBot</a></li>
+            <li><a href="#conteudos">Conteúdos</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+        </ul>
+
+        <!-- Direitos Autorais -->
+        <p>&copy; 2024 Educa Finanças - Todos os Direitos Reservados</p>
+
+       </div>
+
+    </section>
+
+    <!-- Pegar o link do script da pagina lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="{% static 'pagina/js/index.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/pagina/css/cadastro.css">
+    <link rel="shortcut icon" href="../../static/pagina/images/paginaInicial/icons/logo.svg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/c601d460a7.js" crossorigin="anonymous" defer></script>
+    <title>Educa Finanças - Tela de Cadastro</title>
+</head>
+<body>
+    <div class="container">
+        <div class="signin-signup">
+           
+            <form action="{% url 'login' %}" class="sign-in-form" method="post">
+                {% csrf_token %}
+                <h2 class="title">Conecte-se </h2>
+                <div class="input-field">
+                    <!-- <i data-lucide="mail"></i> -->
+                    <i class="fa-regular fa-envelope icon-modify"></i>
+                    <input type="email" name="emaillogin" id="login-email" placeholder="Ex: teste@gmail.com" required>
+                </div>
+                <div class="input-field">
+                    <!-- <i data-lucide="lock"></i> -->
+                    <i class="fa-solid fa-lock icon-modify"></i>
+                    <input type="password" name="senhalogin" id="login-senha" placeholder="Senha" required>
+                </div>
+
+                
+                <input type="submit" value="Login" class="btn">
+                <p class="account-text">Não tem uma conta? <a href="#" id="sign-up-btn2">Cadastre-se</a></p>
+            </form>
+            <form action="{% url 'user_create' %}" class="sign-up-form" method="post">
+                {% csrf_token %}
+                <h2 class="title">Cadastre-se</h2>
+                <div class="input-field">
+                    <!-- <i data-lucide="user"></i> -->
+                    <i class="fa-solid fa-user icon-modify"></i>
+                    <input type="text" name="nome" id="nome" placeholder="Ex: João Silva" required>
+                </div>
+                <div class="input-field">
+                    <!-- <i data-lucide="paperclip"></i> -->
+                    <i class="fa-solid fa-paperclip icon-modify"></i>
+                    <input type="number" name="cpf" id="cpf" placeholder="000.000.000-00" maxlength="11" required>
+                </div>
+                <div class="input-field">
+                    <!-- <i data-lucide="mail"></i> -->
+                    <i class="fa-regular fa-envelope icon-modify"></i>
+                    <input type="email" name="email" id="cadastro-email" placeholder="Ex: teste@gmail.com" required>
+                </div>
+                <div class="input-field">
+                    <!-- <i data-lucide="lock"></i> -->
+                    <i class="fa-solid fa-lock icon-modify"></i>
+                    <input type="password" name="senha" id="cadastro-senha" placeholder="Senha" required>
+                </div>
+                <div class="input-field">
+                    <!-- <i data-lucide="lock"></i> -->
+                    <i class="fa-solid fa-lock icon-modify"></i>
+                    <input type="password" name="confirmacao-senha" id="confirmacao-senha" placeholder="Confirmação de senha" required>
+                </div>
+                <div class="input-field">
+                    <!-- <i data-lucide="calendar"></i> -->
+                    <i class="fa-solid fa-calendar-days icon-modify"></i>
+                    <input type="date" name="data_nascimento" id="data_nascimento" required>
+                </div>
+                <input type="submit" value="Criar conta" class="btn">
+                <p class="account-text">Já tem uma conta? <a href="#" id="sign-in-btn2">Conecte-se</a></p>
+            </form>
+           
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3 class="tittle2">Educa Finanças</h3>
+                    <p>Aqui, você é o protagonista  <br>de sua jornada financeira.</p>
+                    <button class="btn" id="sign-in-btn">Conecte-se</button>
+                </div>
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3 class="tittle2">Educa Finanças<h3>
+                    <p>Você é o autor do seu futuro financeiro. Dê o primeiro passo para escrever uma história de sucesso.</p>
+                    <button class="btn" id="sign-up-btn">Crie sua conta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../../static/pagina/js/cadastro.js" defer></script>
+</body>
+</html>

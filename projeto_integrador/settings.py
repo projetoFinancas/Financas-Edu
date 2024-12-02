@@ -17,16 +17,17 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9z+(o3qh3z^6ifvz4-i96@*p5i7%-*wf3!l0rugb3y4athsjt@'
+SECRET KEY = os.environ.get("DJANGO SECRET KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG int(os.environ.get('DJANGO DEBUG', default=6))
 
-ALLOWED_HOSTS = ['vercel.app' '127.0.0.1', 'localhost']
+ALLOWED HOSTS = str(os.environ.get('DJANGO ALLOWED_HOSTS')).split('.')
 
 
 # Application definition

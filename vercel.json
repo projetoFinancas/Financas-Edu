@@ -27,8 +27,6 @@
     "env": {
       "DJANGO_SETTINGS_MODULE": "projeto_integrador.settings"
     },
-    "commands": [
-      "python manage.py collectstatic --noinput"
-    ]
+   
   }
 }

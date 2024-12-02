@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxDuration": 10
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/media/(.)",
+      "dest": "/media/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/wsgi.py"
+    }
+  ],
+  "build": {
+    "env": {
+      "DJANGO_SETTINGS_MODULE": "projeto_integrador.settings"
+    },
+    "commands": [
+      "python manage.py collectstatic --noinput"
+    ]
+  }
+}

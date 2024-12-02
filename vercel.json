@@ -2,21 +2,21 @@
   "version": 2,
   "builds": [
     {
-      "src": "projeto_integrador/wsgi.py",   // Atualize o caminho para o wsgi.py
+      "src": "projeto_integrador/wsgi.py",   
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",   // Corrigir expressão regular para servir arquivos estáticos
+      "src": "/static/(.*)",  
       "dest": "/static/$1"
     },
     {
-      "src": "/media/(.*)",    // Corrigir expressão regular para servir arquivos de mídia
+      "src": "/media/(.*)",   
       "dest": "/media/$1"
     },
     {
-      "src": "/(.*)",   // Todas as outras rotas vão para o wsgi.py correto
+      "src": "/(.*)",   
       "dest": "projeto_integrador/wsgi.py"
     }
   ],

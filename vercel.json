@@ -2,26 +2,26 @@
   "version": 2,
   "builds": [
     {
-      "src": "projeto_integrador/wsgi.py",   
+      "src": "projeto_integrador/wsgi.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",  
+      "src": "/static/(.*)",
       "dest": "/static/$1"
     },
     {
-      "src": "/media/(.*)",   
+      "src": "/media/(.*)",
       "dest": "/media/$1"
     },
     {
-      "src": "/(.*)",   
+      "src": "/(.*)",
       "dest": "projeto_integrador/wsgi.py"
     }
   ],
   "env": {
-    "DJANGO_SECRET_KEY": "django-insecure-9z+(o3qh3z^6ifvz4-i96@p5i7%-wf3!l0rugb3y4athsjt@"
+    "DJANGO_SECRET_KEY": "django-insecure-9z+(o3qh3z^6ifvz4-i96@p5i7%-wf3!l0rugb3y4athsjt@",
     "DJANGO_DEBUG": "1",
     "DJANGO_ALLOWED_HOSTS": "localhost,127.0.0.1,vercel.app"
   }

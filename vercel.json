@@ -3,10 +3,7 @@
   "builds": [
     {
       "src": "wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxDuration": 10
-      }
+      "use": "@vercel/python"
     }
   ],
   "routes": [
@@ -23,10 +20,8 @@
       "dest": "/wsgi.py"
     }
   ],
-  "build": {
-    "env": {
-      "DJANGO_SETTINGS_MODULE": "projeto_integrador.settings"
-    },
-   
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "projeto_integrador.settings",
+    "DJANGO_SECRET_KEY": "django-insecure-9z+(o3qh3z^6ifvz4-i96@p5i7%-wf3!l0rugb3y4athsjt@"
   }
 }

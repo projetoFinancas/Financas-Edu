@@ -1,6 +1,10 @@
 {
   "version": 2,
   "builds": [
+    { 
+      "src": "build_files.sh",
+      "use": "@vercel/static-build" 
+    },
     {
       "src": "projeto_integrador/wsgi.py",
       "use": "@vercel/python"
